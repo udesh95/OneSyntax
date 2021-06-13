@@ -27,17 +27,12 @@ class PostController extends Controller
         $search = $request -> get('search');
 
         $post = Post::whereHas('Comment', function ($query) use ($request) {
-            $query->where('message', 'like binary', "%{$request->search}%");
+            $query->where('message', 'like', "%{$request->search}%");
         })
-        ->orWhere('description', 'like binary', '%' .$search. '%')
+        ->orWhere('description', 'like', '%' .$search. '%')
         ->withCount('Comment') ->orderBy('comment_count', 'desc')->get();
     
         return view('post.index', compact('post'));
 
-        // $post =Post::with('Comment')->where('description', 'like', '%' .$search. '%')
-        //                             ->orWhere('')
-        //                             ->withCount('Comment') ->orderBy('comment_count', 'desc')->get();
-        // // $post = DB::table('posts')->where('description', 'like', '%' .$search. '%')->paginate(5);
-        // return view('post.index',compact('post'));
     }
 }

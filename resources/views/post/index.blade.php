@@ -8,7 +8,8 @@
 
             <div class="row">
                 <div class="col-sm-4">
-                    <form action="/search" method="GET" role="search">
+                    <form action="/search" method="POST" role="search" enctype="multipart/form-data">
+                        {{ csrf_field() }}
                         <div class="input-group">
                             <input type="search" name="search" class="form-control">
                             <span class="input-group-prepend">

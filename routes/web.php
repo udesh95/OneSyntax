@@ -17,7 +17,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/posts', [App\Http\Controllers\PostController::class, 'index']);
-Route::get('/search', [App\Http\Controllers\PostController::class, 'search']);
-
-Route::post('/posts_post', [App\Http\Controllers\PostController::class, 'create']);
+Route::get('/posts', [App\Http\Controllers\PostController::class, 'index']);
+Route::post('/search', [App\Http\Controllers\PostController::class, 'search']);

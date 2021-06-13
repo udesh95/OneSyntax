@@ -10,21 +10,41 @@ use Tests\TestCase;
 
 class PostTest extends TestCase
 {
-    // use RefreshDatabase;
-    use DatabaseMigrations;
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
+    use RefreshDatabase;
+    // use DatabaseMigrations;
+
+ /** @test */
     public function a_post_can_be_retrive()
     {
-        $post = seed('App\Models\Post')->create();
         $this->withoutExceptionHandling();
         $response = $this->get('/posts');
-        $response->assertSee($post->description);
-        // $response->assertOk();
-        // $this->assertCount(1, Post::all());
+
+        $response->assertOk();
+        $this->assertCount(1, Post::all());
+       
+    }
+/** @test */
+    public function a_post_can_be_search()
+    {
+        $this->withoutExceptionHandling();
+        $response = $this->post('/search', [
+            'description' => 'First',
+        ]);
+
+        $response->assertOk();
+       
+    }
+
+/** @test */
+    public function a_comment_can_be_search()
+    {
+        // $task = factory('App\Task')->create();
+        $this->withoutExceptionHandling();
+        $response = $this->post('/search', [
+            'message' => 'Comment',
+        ]);
+
+        $response->assertOk();
        
     }
 }

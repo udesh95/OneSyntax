@@ -4,20 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
     protected $fillable = ['id', 'description'];
 
-    protected $operators = [
-        '=', '<', '>', '<=', '>=', '<>', '!=',
-        'like', 'like binary', 'not like', 'between', 'ilike',
-        '&', '|', '^', '<<', '>>',
-        'rlike', 'regexp', 'not regexp',
-        '~', '~*', '!~', '!~*', 'similar to',
-        'not similar to',
-    ];
 
     public function comment()
     {
